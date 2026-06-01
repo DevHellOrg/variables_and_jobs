@@ -34,12 +34,8 @@ jobs:
 
   display-variables2:
     runs-on: ubuntu-latest
-    env:
-      JOB_VAR: "Job var 2"
     steps:
     - name: Use variables in display-variables2
-      env: 
-        STEP_VAR: "Step var 2"
       run: |
         echo "Should be variable in workflow scope:$WORKFLOW_VAR"
         echo "Should NOT be variable in job scope:$JOB_VAR"
