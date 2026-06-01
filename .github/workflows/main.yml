@@ -9,8 +9,12 @@ jobs:
     name: ${{ vars.ENVIRONMENT_VAR }}
     runs-on: ubuntu-latest
     environment: test
+    env:
+      JOB_VAR: Job variable
     steps:
     - name: Use variables 1
+      env:
+        STEP_VAR: Step variable
       run: |
         echo "Repository variable : ${{ vars.REPOSITORY_VAR }}"
         echo "Organization variable : ${{ vars.ORGANIZATION_VAR }}"
@@ -28,8 +32,12 @@ jobs:
 
   display-variables2:
     runs-on: ubuntu-latest
+    env:
+      JOB_VAR: Job var 2
     steps:
     - name: Use variables in display-variables2
+      env: 
+        STEP_VAR: Step var 2
       run: |
         echo "Should be variable in workflow scope:$WORKFLOW_VAR"
         echo "Should NOT be variable in job scope:$JOB_VAR"
