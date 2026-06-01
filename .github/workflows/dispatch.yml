@@ -1,0 +1,39 @@
+name: dispatch
+on:
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log Level'
+        required: true
+        type: choice
+        options:
+          - info
+          - warning
+          - debug
+        default: 'warning'
+      tags:
+        description: 'Test scenario tags'
+        required: false
+        type: boolean
+      environment:
+        description: 'Environment to run tests against'
+        type: environment
+        required: true
+      version:
+        description: 'Version number'
+        type: string
+        default: '1.0.0'
+      count:
+        description: 'Number of iterations'
+        type: number
+        default: 5
+jobs:
+  log-the-inputs:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "Log level: $LEVEL"
+          echo "Environment: $ENVIRONMENT"
+        env:
+          LEVEL: ${{ inputs.logLevel }}
+          ENVIRONMENT: ${{ inputs.environment }}
