@@ -56,6 +56,10 @@ jobs:
     needs: job_1
     runs-on: windows-latest
     steps:
+      - name: Download math result for job 1 #⬅️ Download artifact
+        uses: actions/download-artifact@v4
+        with:
+            name: homework_pre #⬅️ Specify which one to download
       - shell: bash
         run: |
           value=`cat math-homework.txt`
